@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import {useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
+import SelectPizza from '../SelectPizza/SelectPizza';
 import './App.css';
 
 function App() {
@@ -65,7 +65,8 @@ function App() {
   
       <img src='images/pizza_photo.png' />
       <p>Pizza is great.</p>
-      <button>post pizza</button>
+      <SelectPizza />
+      
   
     </div>
   );
