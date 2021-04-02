@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import {useEffect, useState} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import './App.css';
 
@@ -11,7 +12,8 @@ function App() {
       getOrder()
   }, [])
 
-  const [ newOrder, setNewOrder] = useState( [] );
+  const dispatch = useDispatch();
+  //const [ newOrder, setNewOrder] = useState( [] );
 
   let addOrder = () =>{
     console.log('in addOrder:', newOrder );
@@ -28,7 +30,7 @@ function App() {
     console.log('in getMenu');
     axios.get('/api/pizza').then((response) =>{
       console.log('back from getMenu GET with:', response);
-      //dispatchEvent({type: 'setNewOrder', payload: response.data});
+      dispatch({type: 'setPizzaMenu', payload: response.data});
     }).catch( (err) =>{
       console.log(err);
       alert('getMenu GET not working');
@@ -44,6 +46,15 @@ function App() {
       console.log(err);
       alert('getOrder GET not working');
     })
+  }
+
+  const order = useSelector( (store )=>{
+    return store.order;
+  })
+
+  const setOrder = ( order )=>{
+    console.log('in setOrder:', order );
+    dispatchEvent( { type: 'setOrder', payload: order } );
   }
 
   return (
