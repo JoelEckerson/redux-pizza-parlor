@@ -4,6 +4,7 @@ function SelectPizzaItem(props) {
     
     let addToOrder = ( ) =>{
         console.log('in addToOrder:', props.item.id );
+        dispatch
     }
 
     return (
